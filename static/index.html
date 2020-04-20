@@ -73,11 +73,19 @@
             id="logout"
             data-cy="logout"
           >
-            logout (default)
+            Log out (default)
           </button>
 
           <button class="btn btn-outline-primary" @click="logoutNoClient">
-            logout (no client id)
+            Log out (no client id)
+          </button>
+
+          <button class="btn btn-outline-primary" @click="logoutLocal">
+            Log out (local)
+          </button>
+
+          <button class="btn btn-outline-primary" @click="logoutSilently">
+            Log out (silent)
           </button>
         </div>
 
@@ -473,6 +481,15 @@
               client_id: null,
               returnTo: 'http://localhost:3000/',
             });
+          },
+          logoutLocal: function () {
+            this.auth0.logout({
+              localOnly: true,
+              returnTo: 'http://localhost:3000',
+            });
+          },
+          logoutSilently: function () {
+            this.auth0.logoutSilently();
           },
         },
       });
